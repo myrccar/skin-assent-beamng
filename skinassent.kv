@@ -1,0 +1,144 @@
+#: import Factory kivy.factory.Factory
+#: import BoxLayout kivy.uix.boxlayout.BoxLayout
+
+<MyScreenManager@ScreenManager>:
+    Screen:
+        name: "page1"
+        
+        BoxLayout:
+            orientation: "vertical"
+            
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+
+                Label:
+                    text: "Name:"
+
+                TextInput:
+                    id: name
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+
+                Label:
+                    text: "Author:"
+
+                TextInput:
+                    id: author
+                
+            Widget:
+                size_hint_y: 0.9
+
+            BoxLayout:
+                size_hint_y: None
+                height: "40dp"
+                orientation: "horizontal"
+
+                Button:
+                    text: "Back"
+                    on_release: app.root.current = app.root.previous_page()
+
+                Button:
+                    text: "Next"
+                    on_release: app.root.current = app.root.next_page()
+
+    Screen:
+        name: "page2"
+        BoxLayout:
+            orientation: "vertical"
+            
+            Spinner:
+                id: vehicle
+                text: "Select Vehicle"
+                values: app.get_vehicles()
+                on_text: root.vehicle_selected(self.text)
+                
+            Widget:
+                size_hint_y: 0.9
+
+            BoxLayout:
+                size_hint_y: None
+                height: "40dp"
+                orientation: "horizontal"
+
+                Button:
+                    text: "Back"
+                    on_release: app.root.current = app.root.previous_page()
+
+                Button:
+                    text: "Next"
+                    on_release: app.root.current = app.root.next_page()
+
+    Screen:
+        name: "page3"
+        BoxLayout:
+            orientation: "vertical"
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+
+                Label:
+                    text: root.beamng_path
+                    id: path
+
+                Button:
+                    text: "Change"
+                    on_press: root.change_path()
+                    size_hint_x: None
+                    width: "60dp"
+                    
+            Widget:
+                size_hint_y: 0.9
+
+            BoxLayout:
+                size_hint_y: None
+                height: "40dp"
+                orientation: "horizontal"
+
+                Button:
+                    text: "Back"
+                    on_release: app.root.current = app.root.previous_page()
+
+                Button:
+                    text: "Next"
+                    on_release: app.root.current = app.root.next_page()
+
+    Screen:
+        name: "page4"
+        BoxLayout:
+            orientation: "vertical"
+            
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+
+                Button:
+                    text: "Generate"
+                    on_press: root.generate_files()
+
+                Label:
+                    text: "Waiting..."
+                    id: info
+                    
+            Widget:
+                size_hint_y: 0.9
+
+            BoxLayout:
+                size_hint_y: None
+                height: "40dp"
+                orientation: "horizontal"
+
+                Button:
+                    text: "Back"
+                    on_release: app.root.current = app.root.previous_page()
+
+                Button:
+                    text: "Next"
+                    on_release: app.root.current = app.root.next_page()
